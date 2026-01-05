@@ -39,3 +39,4 @@ See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rule
 - #9: cập nhật README
 - #13: cập nhật ghi chú phát triển
 - #17: cập nhật comment cho dễ đọc
+- #21: cập nhật README
