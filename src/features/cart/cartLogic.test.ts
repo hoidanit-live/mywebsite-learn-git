@@ -17,4 +17,8 @@ describe('cartLogic', () => {
     expect(calculateSubtotal(items)).toBe(650000)
   })
 
+  it('applyDiscount trừ đúng % giảm giá', () => {
+    expect(applyDiscount(650000, 10)).toBe(585000)
+  })
+
 })
