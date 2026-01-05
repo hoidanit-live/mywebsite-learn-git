@@ -19,3 +19,15 @@ export function applyDiscount(amount: number, discountPercent: number): number {
 export function calculateTax(amount: number, taxRate: number): number {
   return amount * (1 + taxRate / 100)
 }
+
+/** Tính tổng tiền cuối cùng: giảm giá áp dụng trên subtotal, thuế áp dụng trên phần đã giảm giá. */
+export function calculateTotal(
+  items: CartItem[],
+  discountPercent: number,
+  taxRate: number
+): number {
+  const subtotal = calculateSubtotal(items)
+  const discounted = applyDiscount(subtotal, discountPercent)
+  const total = calculateTax(discounted, taxRate)
+  return Math.round(total * 100) / 100
+}
