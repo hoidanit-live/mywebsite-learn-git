@@ -21,4 +21,8 @@ describe('cartLogic', () => {
     expect(applyDiscount(650000, 10)).toBe(585000)
   })
 
+  it('calculateTax cộng đúng % thuế', () => {
+    expect(calculateTax(585000, 8)).toBeCloseTo(631800, 5)
+  })
+
 })
