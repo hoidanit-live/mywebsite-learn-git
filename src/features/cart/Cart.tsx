@@ -1,6 +1,14 @@
 import { useState } from 'react'
 import './Cart.css'
-import { calculateSubtotal, applyDiscount, type CartItem } from './cartLogic'
+import {
+  calculateSubtotal,
+  applyDiscount,
+  calculateTax,
+  calculateTotal,
+  type CartItem,
+} from './cartLogic'
+
+const TAX_RATE = 8
 
 const initialItems: CartItem[] = [
   { id: 1, name: 'Áo thun', price: 150000, quantity: 2 },
@@ -13,6 +21,8 @@ function Cart() {
   const discountPercent = discountCode.trim().toUpperCase() === 'SALE10' ? 10 : 0
   const subtotal = calculateSubtotal(items)
   const discounted = applyDiscount(subtotal, discountPercent)
+  const tax = calculateTax(discounted, TAX_RATE) - discounted
+  const total = calculateTotal(items, discountPercent, TAX_RATE)
 
   return (
     <section className="cart">
@@ -34,8 +44,12 @@ function Cart() {
           onChange={(e) => setDiscountCode(e.target.value)}
         />
       </div>
-      <p>Tạm tính: {subtotal}đ</p>
-      <p>Sau giảm giá: {discounted}đ</p>
+      <div className="cart-summary">
+        <p>Tạm tính: {subtotal}đ</p>
+        <p>Giảm giá: {discountPercent}%</p>
+        <p>Thuế: {tax}đ</p>
+        <p className="cart-total">Tổng cộng: {total}đ</p>
+      </div>
     </section>
   )
 }
