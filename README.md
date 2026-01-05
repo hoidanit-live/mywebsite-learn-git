@@ -35,3 +35,4 @@ See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rule
 
 ## Nhật ký phát triển
 - #1: cập nhật ghi chú phát triển
+- #5: cập nhật comment cho dễ đọc
