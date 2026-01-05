@@ -25,4 +25,8 @@ describe('cartLogic', () => {
     expect(calculateTax(585000, 8)).toBeCloseTo(631800, 5)
   })
 
+  it('calculateTotal: giảm giá áp dụng trước, thuế tính trên phần đã giảm giá', () => {
+    expect(calculateTotal(items, 10, 8)).toBeCloseTo(631800, 5)
+  })
+
 })
