@@ -46,3 +46,4 @@ See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rule
 - #37: cập nhật ghi chú phát triển
 - #41: cập nhật comment cho dễ đọc
 - #45: cập nhật README
+- #49: cập nhật ghi chú phát triển
