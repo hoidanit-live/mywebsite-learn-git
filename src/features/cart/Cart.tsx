@@ -27,6 +27,9 @@ function Cart() {
   return (
     <section className="cart">
       <h2>Giỏ hàng</h2>
+      {items.length === 0 ? (
+        <p className="cart-empty">Giỏ hàng trống.</p>
+      ) : (
       <ul className="cart-list">
         {items.map((item) => (
           <li key={item.id} className="cart-item">
@@ -36,6 +39,7 @@ function Cart() {
           </li>
         ))}
       </ul>
+      )}
       <div className="cart-discount">
         <input
           type="text"
