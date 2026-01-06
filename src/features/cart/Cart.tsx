@@ -29,6 +29,10 @@ function Cart() {
     setItems(items.map((item) => (item.id === id ? { ...item, quantity } : item)))
   }
 
+  const removeItem = (id: number) => {
+    setItems(items.filter((item) => item.id !== id))
+  }
+
   return (
     <section className="cart">
       <h2>Giỏ hàng</h2>
@@ -47,6 +51,9 @@ function Cart() {
               onChange={(e) => updateQuantity(item.id, Number(e.target.value))}
             />
             <span>{item.price * item.quantity}đ</span>
+            <button className="cart-item-remove" onClick={() => removeItem(item.id)}>
+              Xóa
+            </button>
           </li>
         ))}
       </ul>
