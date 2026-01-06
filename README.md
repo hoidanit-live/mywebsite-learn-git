@@ -55,3 +55,4 @@ See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rule
 
 ## Tính năng
 - Giỏ hàng: tính subtotal, giảm giá, thuế và tổng tiền.
+- #73: cập nhật ghi chú phát triển
