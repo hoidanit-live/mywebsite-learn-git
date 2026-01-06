@@ -56,3 +56,8 @@
     margin: 1rem;
   }
 }
+
+.cart-empty {
+  color: #888;
+  font-style: italic;
+}
