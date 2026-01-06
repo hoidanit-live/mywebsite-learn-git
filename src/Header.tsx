@@ -1,6 +1,6 @@
 import './Header.css'
 
-// note: sửa cảnh báo lint nhỏ #34
+// note: dọn dẹp code thừa #38
 function Header() {
   return (
     <header className="header">
