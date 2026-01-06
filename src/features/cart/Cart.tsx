@@ -50,7 +50,7 @@ function Cart() {
               value={item.quantity}
               onChange={(e) => updateQuantity(item.id, Number(e.target.value))}
             />
-            <span>{item.price * item.quantity}đ</span>
+            <span>{(item.price * item.quantity).toLocaleString('vi-VN')}đ</span>
             <button className="cart-item-remove" onClick={() => removeItem(item.id)}>
               Xóa
             </button>
@@ -67,10 +67,10 @@ function Cart() {
         />
       </div>
       <div className="cart-summary">
-        <p>Tạm tính: {subtotal}đ</p>
+        <p>Tạm tính: {subtotal.toLocaleString('vi-VN')}đ</p>
         <p>Giảm giá: {discountPercent}%</p>
-        <p>Thuế: {tax}đ</p>
-        <p className="cart-total">Tổng cộng: {total}đ</p>
+        <p>Thuế: {tax.toLocaleString('vi-VN')}đ</p>
+        <p className="cart-total">Tổng cộng: {total.toLocaleString('vi-VN')}đ</p>
       </div>
     </section>
   )
