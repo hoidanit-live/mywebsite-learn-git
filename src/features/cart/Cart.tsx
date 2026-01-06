@@ -16,13 +16,18 @@ const initialItems: CartItem[] = [
 ]
 
 function Cart() {
-  const [items] = useState<CartItem[]>(initialItems)
+  const [items, setItems] = useState<CartItem[]>(initialItems)
   const [discountCode, setDiscountCode] = useState('')
   const discountPercent = discountCode.trim().toUpperCase() === 'SALE10' ? 10 : 0
   const subtotal = calculateSubtotal(items)
   const discounted = applyDiscount(subtotal, discountPercent)
   const tax = calculateTax(discounted, TAX_RATE) - discounted
   const total = calculateTotal(items, discountPercent, TAX_RATE)
+
+  const updateQuantity = (id: number, quantity: number) => {
+    if (quantity < 1) return
+    setItems(items.map((item) => (item.id === id ? { ...item, quantity } : item)))
+  }
 
   return (
     <section className="cart">
@@ -34,7 +39,13 @@ function Cart() {
         {items.map((item) => (
           <li key={item.id} className="cart-item">
             <span className="cart-item-name">{item.name}</span>
-            <span>{item.quantity}</span>
+            <input
+              type="number"
+              min={1}
+              className="cart-item-qty"
+              value={item.quantity}
+              onChange={(e) => updateQuantity(item.id, Number(e.target.value))}
+            />
             <span>{item.price * item.quantity}đ</span>
           </li>
         ))}
