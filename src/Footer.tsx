@@ -1,6 +1,6 @@
 import './Footer.css'
 
-// note: chỉnh nhỏ giao diện header #51
+// note: thêm ghi chú TODO #55
 function Footer() {
   return (
     <footer className="footer">
