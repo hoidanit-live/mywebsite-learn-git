@@ -1,12 +1,7 @@
 import { useState } from 'react'
 import './Cart.css'
-import {
-  calculateSubtotal,
-  applyDiscount,
-  calculateTax,
-  calculateTotal,
-  type CartItem,
-} from './cartLogic'
+import type { CartItem } from './cartLogic'
+import { calculateSubtotal, applyDiscount, calculateTax, calculateTotal } from './cartLogic'
 
 const TAX_RATE = 8
 
