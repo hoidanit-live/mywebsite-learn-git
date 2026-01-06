@@ -14,7 +14,7 @@ const initialTodos: Todo[] = [
   { id: 3, text: 'Uống nước', done: false, priority: 'normal' },
 ]
 
-// note: chỉnh spacing footer #68
+// note: sắp xếp lại import #72
 function TodoList() {
   const [todos, setTodos] = useState<Todo[]>(initialTodos)
   const [input, setInput] = useState('')
