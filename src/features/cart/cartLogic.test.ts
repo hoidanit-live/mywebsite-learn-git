@@ -29,4 +29,8 @@ describe('cartLogic', () => {
     expect(calculateTotal(items, 10, 8)).toBeCloseTo(631800, 5)
   })
 
+  it('calculateTotal trả về 0 khi giỏ hàng rỗng', () => {
+    expect(calculateTotal([], 10, 8)).toBe(0)
+  })
+
 })
