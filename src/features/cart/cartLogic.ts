@@ -27,7 +27,8 @@ export function calculateTotal(
   taxRate: number
 ): number {
   const subtotal = calculateSubtotal(items)
-  const discounted = applyDiscount(subtotal, discountPercent)
-  const total = calculateTax(discounted, taxRate)
+  const taxedSubtotal = calculateTax(subtotal, taxRate)
+  const discountAmount = subtotal * (discountPercent / 100)
+  const total = taxedSubtotal - discountAmount
   return Math.round(total * 100) / 100
 }
