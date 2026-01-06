@@ -42,7 +42,8 @@
 }
 
 .cart-item-remove {
-  background: #f44336;
+  background: #e53935;
+  font-size: 0.85rem;
   color: white;
   border: none;
   border-radius: 4px;
