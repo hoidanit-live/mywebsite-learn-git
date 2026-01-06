@@ -1,6 +1,6 @@
 import './Footer.css'
 
-// note: thêm ghi chú TODO #55
+// note: chỉnh màu chữ todo list #59
 function Footer() {
   return (
     <footer className="footer">
