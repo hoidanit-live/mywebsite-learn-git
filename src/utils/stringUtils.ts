@@ -18,10 +18,9 @@ function removeDiacritics(str: string): string {
 
 /** Chuyển chuỗi thành slug (dùng cho URL), hỗ trợ tiếng Việt có dấu. */
 export function slugify(str: string): string {
-  return removeDiacritics(str.trim().toLowerCase()).replace(
-    /[^a-z0-9]+/g,
-    "-"
-  );
+  return removeDiacritics(str.trim().toLowerCase())
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 }
 
 /** Cắt ngắn chuỗi và thêm "..." nếu vượt quá maxLength. */
