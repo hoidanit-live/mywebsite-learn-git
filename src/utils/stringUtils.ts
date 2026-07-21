@@ -7,9 +7,18 @@ export function capitalize(str: string): string {
   return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
 }
 
-/** Chuyển chuỗi thành slug (dùng cho URL). */
-export function slugify(str: string): string {
+/** Bỏ dấu tiếng Việt, ví dụ "Việt Nam" -> "Viet Nam". */
+function removeDiacritics(str: string): string {
   return str
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/đ/g, "d")
+    .replace(/Đ/g, "D");
+}
+
+/** Chuyển chuỗi thành slug (dùng cho URL), hỗ trợ tiếng Việt có dấu. */
+export function slugify(str: string): string {
+  return removeDiacritics(str)
     .trim()
     .toLowerCase()
     .replace(/\s+/g, "-")
