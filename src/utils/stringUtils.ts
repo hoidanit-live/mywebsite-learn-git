@@ -2,7 +2,7 @@
 
 /** Viết hoa chữ cái đầu tiên, bỏ khoảng trắng thừa. */
 export function capitalize(str: string): string {
-  const trimmed = str.trim();
+  const trimmed = str.trim().replace(/\s+/g, " ");
   if (!trimmed) return trimmed;
   return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
 }
