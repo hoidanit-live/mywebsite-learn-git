@@ -5,12 +5,13 @@ interface Todo {
   id: number
   text: string
   done: boolean
+  priority: 'high' | 'normal'
 }
 
 const initialTodos: Todo[] = [
-  { id: 1, text: 'Học React', done: true },
-  { id: 2, text: 'Làm CRUD Todo List', done: false },
-  { id: 3, text: 'Uống nước', done: false },
+  { id: 1, text: 'Học React', done: true, priority: 'normal' },
+  { id: 2, text: 'Làm CRUD Todo List', done: false, priority: 'high' },
+  { id: 3, text: 'Uống nước', done: false, priority: 'normal' },
 ]
 
 function TodoList() {
@@ -20,12 +21,17 @@ function TodoList() {
   const [editingText, setEditingText] = useState('')
 
   // Create
+  const MAX_TEXT_LENGTH = 50
   const addTodo = (e: React.FormEvent) => {
     e.preventDefault()
     const text = input.trim()
     if (!text) return
+    if (text.length > MAX_TEXT_LENGTH) {
+      alert(`Công việc không được vượt quá ${MAX_TEXT_LENGTH} ký tự!`)
+      return
+    }
     const nextId = todos.length + 1
-    setTodos([...todos, { id: nextId, text, done: false }])
+    setTodos([...todos, { id: nextId, text, done: false, priority: 'normal' }])
     setInput('')
   }
 
@@ -40,6 +46,8 @@ function TodoList() {
 
   // Delete
   const deleteTodo = (id: number) => {
+    const confirmed = window.confirm('Bạn có chắc muốn xóa công việc này?')
+    if (!confirmed) return
     setTodos(todos.filter((t) => t.id !== id))
   }
 
@@ -60,7 +68,7 @@ function TodoList() {
     setEditingText('')
   }
 
-  const remaining = todos.filter((t) => t.done).length
+  const remaining = todos.filter((t) => !t.done && t.priority === 'high').length
 
   return (
     <section className="todo-app">
