@@ -5,6 +5,7 @@ interface Todo {
   id: number
   text: string
   done: boolean
+  completedAt?: string
 }
 
 const initialTodos: Todo[] = [
@@ -24,6 +25,11 @@ function TodoList() {
     e.preventDefault()
     const text = input.trim()
     if (!text) return
+    const isDuplicate = todos.some((t) => t.text.toLowerCase() === text.toLowerCase())
+    if (isDuplicate) {
+      alert('Công việc này đã tồn tại!')
+      return
+    }
     const nextId = todos.length + 1
     setTodos([...todos, { id: nextId, text, done: false }])
     setInput('')
@@ -34,6 +40,7 @@ function TodoList() {
     const todo = todos.find((t) => t.id === id)
     if (todo) {
       todo.done = !todo.done
+      todo.completedAt = todo.done ? new Date().toISOString() : undefined
     }
     setTodos(todos)
   }
@@ -60,7 +67,7 @@ function TodoList() {
     setEditingText('')
   }
 
-  const remaining = todos.filter((t) => t.done).length
+  const remaining = todos.filter((t) => !t.done).length
 
   return (
     <section className="todo-app">
