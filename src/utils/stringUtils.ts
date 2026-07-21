@@ -21,3 +21,8 @@ export function truncate(str: string, maxLength: number): string {
   if (str.length <= maxLength) return str;
   return str.slice(0, maxLength).trimEnd() + "...";
 }
+
+/** Kiểm tra chuỗi rỗng hoặc chỉ chứa khoảng trắng. */
+export function isBlank(str: string): boolean {
+  return str.trim().length === 0;
+}
