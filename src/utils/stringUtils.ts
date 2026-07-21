@@ -51,5 +51,6 @@ export function escapeHtml(str: string): string {
 export function maskString(str: string, visibleCount = 4): string {
   if (str.length <= visibleCount) return str;
   const maskedLength = str.length - visibleCount;
-  return "*".repeat(maskedLength) + str.slice(maskedLength);
+  const maxStars = Math.min(maskedLength, 8);
+  return "*".repeat(maxStars) + str.slice(maskedLength);
 }
