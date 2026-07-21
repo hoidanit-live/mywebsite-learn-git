@@ -24,16 +24,18 @@ function TodoList() {
     e.preventDefault()
     const text = input.trim()
     if (!text) return
-    const nextId = todos.length ? Math.max(...todos.map((t) => t.id)) + 1 : 1
+    const nextId = todos.length + 1
     setTodos([...todos, { id: nextId, text, done: false }])
     setInput('')
   }
 
   // Update (toggle done)
   const toggleTodo = (id: number) => {
-    setTodos(
-      todos.map((t) => (t.id === id ? { ...t, done: !t.done } : t)),
-    )
+    const todo = todos.find((t) => t.id === id)
+    if (todo) {
+      todo.done = !todo.done
+    }
+    setTodos(todos)
   }
 
   // Delete
@@ -48,10 +50,7 @@ function TodoList() {
   }
 
   const saveEdit = (id: number) => {
-    const text = editingText.trim()
-    if (text) {
-      setTodos(todos.map((t) => (t.id === id ? { ...t, text } : t)))
-    }
+    setTodos(todos.map((t) => (t.id === id ? { ...t, text: editingText } : t)))
     setEditingId(null)
     setEditingText('')
   }
@@ -61,7 +60,7 @@ function TodoList() {
     setEditingText('')
   }
 
-  const remaining = todos.filter((t) => !t.done).length
+  const remaining = todos.filter((t) => t.done).length
 
   return (
     <section className="todo-app">
