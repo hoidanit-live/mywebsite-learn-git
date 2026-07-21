@@ -27,6 +27,7 @@ export function slugify(str: string): string {
 
 /** Cắt ngắn chuỗi và thêm "..." nếu vượt quá maxLength. */
 export function truncate(str: string, maxLength: number): string {
+  if (maxLength <= 0) return "";
   if (str.length <= maxLength) return str;
   return str.slice(0, maxLength).trimEnd() + "...";
 }
