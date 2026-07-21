@@ -26,3 +26,12 @@ export function truncate(str: string, maxLength: number): string {
 export function isBlank(str: string): boolean {
   return str.trim().length === 0;
 }
+
+/** Escape các ký tự HTML đặc biệt để chống XSS khi render ra DOM. */
+export function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
