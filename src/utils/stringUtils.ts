@@ -44,3 +44,10 @@ export function escapeHtml(str: string): string {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
 }
+
+/** Che bớt chuỗi nhạy cảm (số thẻ, SĐT...), chỉ giữ lại `visibleCount` ký tự cuối. */
+export function maskString(str: string, visibleCount = 4): string {
+  if (str.length <= visibleCount) return str;
+  const maskedLength = str.length - visibleCount;
+  return "*".repeat(maskedLength) + str.slice(maskedLength);
+}
