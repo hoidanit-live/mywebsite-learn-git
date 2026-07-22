@@ -1,0 +1,11 @@
+Tổng số commit đã tạo (không tính commit setup vitest): 99
+Baseline "good" (calculateTotal đúng, ngay trước khi có bug): d52e65c2c834522b1d60774fd6008d6fbc4b015e
+Bug commit (đã cấy bug vào calculateTotal): 0d831b503f469553473068a38cfd5b9ef6b256d1
+HEAD hiện tại ("bad"): b82e64484233f534586886b8dc73276b2f531481
+
+Lệnh demo bisect:
+  git bisect start
+  git bisect bad b82e64484233f534586886b8dc73276b2f531481
+  git bisect good d52e65c2c834522b1d60774fd6008d6fbc4b015e
+  git bisect run npm test
+  git bisect reset
