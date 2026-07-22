@@ -24,6 +24,11 @@ function Cart() {
   const tax = calculateTax(discounted, TAX_RATE) - discounted
   const total = calculateTotal(items, discountPercent, TAX_RATE)
 
+  // Ghi chú demo: tổng "đúng" tính độc lập theo công thức chuẩn subtotal -> discount -> tax,
+  // để so sánh trực quan với `total` (kết quả thật của calculateTotal) mà không cần tính nhẩm.
+  const expectedTotal = Math.round((discounted + tax) * 100) / 100
+  const bugDelta = Math.round((total - expectedTotal) * 100) / 100
+
   const updateQuantity = (id: number, quantity: number) => {
     if (quantity < 1) return
     setItems(items.map((item) => (item.id === id ? { ...item, quantity } : item)))
@@ -103,6 +108,20 @@ function Cart() {
             <span>{formatMoney(total)}</span>
           </div>
         </div>
+
+        {bugDelta !== 0 && (
+          <div className="cart-debug-note">
+            <p className="cart-debug-title">🐛 Ghi chú demo (chỉ để dò bug, không phải UI thật)</p>
+            <p>Tổng đúng theo công thức chuẩn (subtotal → discount → tax): {formatMoney(expectedTotal)}</p>
+            <p>Tổng đang hiển thị (calculateTotal thực tế): {formatMoney(total)}</p>
+            <p>Chênh lệch: {formatMoney(bugDelta)}</p>
+            <p className="cart-debug-reason">
+              Nguyên nhân: <code>calculateTotal</code> đang tính thuế trên <em>subtotal gốc</em> rồi mới trừ
+              thẳng số tiền giảm giá (chưa gồm thuế), thay vì trừ giảm giá trước rồi mới tính thuế trên phần
+              đã giảm. Hai cách này chỉ ra kết quả giống nhau khi discount hoặc tax bằng 0.
+            </p>
+          </div>
+        )}
       </div>
     </section>
   )

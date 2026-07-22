@@ -157,3 +157,33 @@
     border-radius: 12px;
   }
 }
+
+.cart-debug-note {
+  margin-top: 1.25rem;
+  padding: 0.9rem 1rem;
+  background: #fff8e1;
+  border: 1px dashed #f0b429;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  color: #7a5b00;
+}
+
+.cart-debug-note p {
+  margin: 0.25rem 0;
+}
+
+.cart-debug-title {
+  font-weight: 700;
+  margin-bottom: 0.4rem !important;
+}
+
+.cart-debug-reason {
+  margin-top: 0.5rem !important;
+  color: #6b4c00;
+}
+
+.cart-debug-reason code {
+  background: #fdecc4;
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+}
